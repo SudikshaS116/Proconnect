@@ -1,3 +1,4 @@
+import BASE_URL from '../utils/api'
 import { useState, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
@@ -50,7 +51,7 @@ function Stories() {
 
   const fetchStories = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/stories', config)
+      const res = await axios.get('${BASE_URL}/api/stories', config)
       setStories(res.data)
     } catch (error) {
       console.log(error)
@@ -73,7 +74,7 @@ function Stories() {
         )
         imageUrl = uploadRes.data.secure_url
       }
-      await axios.post('http://localhost:5000/api/stories', {
+      await axios.post('${BASE_URL}/api/stories', {
         content: newStory.content,
         backgroundColor: newStory.backgroundColor,
         image: imageUrl
@@ -93,7 +94,7 @@ function Stories() {
   const handleViewGroup = async (group) => {
     // Always fetch fresh stories before viewing
     try {
-      const res = await axios.get('http://localhost:5000/api/stories', config)
+      const res = await axios.get('${BASE_URL}/api/stories', config)
       const freshStories = res.data
       setStories(freshStories)
 
@@ -114,7 +115,7 @@ function Stories() {
 
       // Mark first story as viewed
       const viewRes = await axios.put(
-        `http://localhost:5000/api/stories/${freshGroup.stories[0]._id}/view`,
+        `${BASE_URL}/api/stories/${freshGroup.stories[0]._id}/view`,
         {},
         config
       )
@@ -139,7 +140,7 @@ function Stories() {
       setStoryIndex(nextIndex)
       setPaused(false)
       axios.put(
-        `http://localhost:5000/api/stories/${selectedGroup.stories[nextIndex]._id}/view`,
+        `${BASE_URL}/api/stories/${selectedGroup.stories[nextIndex]._id}/view`,
         {},
         config
       ).then(res => {
@@ -167,7 +168,7 @@ function Stories() {
 
   const handleDeleteStory = async (storyId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/stories/${storyId}`, config)
+      await axios.delete(`${BASE_URL}/api/stories/${storyId}`, config)
       if (selectedGroup.stories.length <= 1) {
         setSelectedGroup(null)
         setStoryIndex(0)

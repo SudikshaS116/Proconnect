@@ -1,3 +1,4 @@
+import BASE_URL from '../utils/api'
 import { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -14,7 +15,7 @@ function PeopleSidebar({ token, currentUser }) {
   useEffect(() => {
     const fetchPeople = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/connections/users', {
+        const res = await axios.get('${BASE_URL}/api/connections/users', {
           headers: { Authorization: `Bearer ${token}` }
         })
         setPeople(res.data.slice(0, 3))
@@ -25,7 +26,7 @@ function PeopleSidebar({ token, currentUser }) {
 
     const fetchMyConnections = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/connections/my-connections', {
+        const res = await axios.get('${BASE_URL}/api/connections/my-connections', {
           headers: { Authorization: `Bearer ${token}` }
         })
         const ids = res.data.connections.map(c => c._id)
@@ -43,7 +44,7 @@ function PeopleSidebar({ token, currentUser }) {
   const handleConnect = async (userId) => {
     try {
       await axios.post(
-        `http://localhost:5000/api/connections/send/${userId}`,
+        `${BASE_URL}/api/connections/send/${userId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       )
@@ -119,7 +120,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchMe = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/users/me', config)
+        const res = await axios.get('${BASE_URL}/api/users/me', config)
         dispatch(loginSuccess({ user: res.data, token }))
       } catch (error) {
         console.log(error)
@@ -134,7 +135,7 @@ function Dashboard() {
 
   const fetchPosts = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/posts', config)
+      const res = await axios.get('${BASE_URL}/api/posts', config)
       setPosts(res.data)
     } catch (error) {
       console.log(error)
@@ -177,7 +178,7 @@ function Dashboard() {
         }
       }
       const res = await axios.post(
-        'http://localhost:5000/api/posts',
+        '${BASE_URL}/api/posts',
         { content: newPost, image: imageUrl },
         config
       )
@@ -195,7 +196,7 @@ function Dashboard() {
   const handleLike = async (postId) => {
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/posts/${postId}/like`,
+        `${BASE_URL}/api/posts/${postId}/like`,
         {},
         config
       )
@@ -209,7 +210,7 @@ function Dashboard() {
     if (!commentText[postId]?.trim()) return
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/posts/${postId}/comment`,
+        `${BASE_URL}/api/posts/${postId}/comment`,
         { text: commentText[postId] },
         config
       )
@@ -233,7 +234,7 @@ function Dashboard() {
 
   const handleDelete = async (postId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/posts/${postId}`, config)
+      await axios.delete(`${BASE_URL}/api/posts/${postId}`, config)
       setPosts(posts.filter(p => p._id !== postId))
     } catch (error) {
       console.log(error)

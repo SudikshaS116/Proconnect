@@ -1,10 +1,11 @@
+import BASE_URL from '../utils/api'
 import { useState, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
 import { io } from 'socket.io-client'
 import Navbar from '../components/Navbar'
 
-const socket = io('http://localhost:5000')
+const socket = io('${BASE_URL}')
 
 function Messaging() {
   const { user, token } = useSelector((state) => state.auth)
@@ -42,7 +43,7 @@ function Messaging() {
 
   const fetchConnections = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/connections/my-connections', config)
+      const res = await axios.get('${BASE_URL}/api/connections/my-connections', config)
       setConnections(res.data.connections)
     } catch (error) {
       console.log(error)
@@ -52,7 +53,7 @@ function Messaging() {
   const fetchMessages = async (userId) => {
     setLoading(true)
     try {
-      const res = await axios.get(`http://localhost:5000/api/messages/${userId}`, config)
+      const res = await axios.get(`${BASE_URL}/api/messages/${userId}`, config)
       setMessages(res.data)
     } catch (error) {
       console.log(error)
@@ -70,7 +71,7 @@ function Messaging() {
     if (!newMessage.trim() || !selectedUser) return
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/messages/${selectedUser._id}`,
+        `${BASE_URL}/api/messages/${selectedUser._id}`,
         { content: newMessage },
         config
       )

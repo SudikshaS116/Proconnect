@@ -1,3 +1,4 @@
+import BASE_URL from '../utils/api'
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
@@ -20,7 +21,7 @@ function Network() {
 
   const fetchAllUsers = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/connections/users', config)
+      const res = await axios.get('${BASE_URL}/api/connections/users', config)
       setAllUsers(res.data)
     } catch (error) {
       console.log(error)
@@ -29,7 +30,7 @@ function Network() {
 
   const fetchMyConnections = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/connections/my-connections', config)
+      const res = await axios.get('${BASE_URL}/api/connections/my-connections', config)
       setConnections(res.data.connections)
       setRequests(res.data.connectionRequests)
     } catch (error) {
@@ -40,7 +41,7 @@ function Network() {
   const handleSendRequest = async (userId) => {
     setActionLoading({ ...actionLoading, [userId]: true })
     try {
-      await axios.post(`http://localhost:5000/api/connections/send/${userId}`, {}, config)
+      await axios.post(`${BASE_URL}/api/connections/send/${userId}`, {}, config)
       fetchAllUsers()
       fetchMyConnections()
     } catch (error) {
@@ -53,7 +54,7 @@ function Network() {
   const handleAccept = async (userId) => {
     setActionLoading({ ...actionLoading, [userId]: true })
     try {
-      await axios.post(`http://localhost:5000/api/connections/accept/${userId}`, {}, config)
+      await axios.post(`${BASE_URL}/api/connections/accept/${userId}`, {}, config)
       fetchMyConnections()
       fetchAllUsers()
     } catch (error) {
@@ -66,7 +67,7 @@ function Network() {
   const handleReject = async (userId) => {
     setActionLoading({ ...actionLoading, [userId]: true })
     try {
-      await axios.post(`http://localhost:5000/api/connections/reject/${userId}`, {}, config)
+      await axios.post(`${BASE_URL}/api/connections/reject/${userId}`, {}, config)
       fetchMyConnections()
     } catch (error) {
       console.log(error)
@@ -78,7 +79,7 @@ function Network() {
   const handleRemove = async (userId) => {
     setActionLoading({ ...actionLoading, [userId]: true })
     try {
-      await axios.delete(`http://localhost:5000/api/connections/remove/${userId}`, config)
+      await axios.delete(`${BASE_URL}/api/connections/remove/${userId}`, config)
       fetchMyConnections()
       fetchAllUsers()
     } catch (error) {

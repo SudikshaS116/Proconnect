@@ -1,3 +1,4 @@
+import BASE_URL from '../utils/api'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -26,7 +27,7 @@ function Signup() {
     }
     setLoading(true)
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/signup', {
+      const res = await axios.post('${BASE_URL}/api/auth/signup', {
         name: formData.name,
         email: formData.email,
         password: formData.password,

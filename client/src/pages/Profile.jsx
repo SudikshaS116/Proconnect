@@ -1,3 +1,4 @@
+import BASE_URL from '../utils/api'
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { loginSuccess } from '../redux/slices/authSlice'
@@ -44,7 +45,7 @@ function Profile() {
     setLoading(true)
     try {
       const res = await axios.put(
-        'http://localhost:5000/api/users/update',
+        '${BASE_URL}/api/users/update',
         {
           ...formData,
           skills: formData.skills.split(',').map((s) => s.trim()).filter(Boolean),

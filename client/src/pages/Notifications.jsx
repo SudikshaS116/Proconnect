@@ -1,3 +1,4 @@
+import BASE_URL from '../utils/api'
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -18,7 +19,7 @@ function Notifications() {
 
   const fetchNotifications = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/notifications', config)
+      const res = await axios.get('${BASE_URL}/api/notifications', config)
       setNotifications(res.data)
     } catch (error) {
       console.log(error)
@@ -29,7 +30,7 @@ function Notifications() {
 
   const handleMarkAllRead = async () => {
     try {
-      await axios.put('http://localhost:5000/api/notifications/mark-all-read', {}, config)
+      await axios.put('${BASE_URL}/api/notifications/mark-all-read', {}, config)
       setNotifications(notifications.map(n => ({ ...n, read: true })))
     } catch (error) {
       console.log(error)
@@ -38,7 +39,7 @@ function Notifications() {
 
   const handleMarkRead = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/notifications/${id}/read`, {}, config)
+      await axios.put(`${BASE_URL}/api/notifications/${id}/read`, {}, config)
       setNotifications(notifications.map(n => n._id === id ? { ...n, read: true } : n))
     } catch (error) {
       console.log(error)
@@ -47,7 +48,7 @@ function Notifications() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/notifications/${id}`, config)
+      await axios.delete(`${BASE_URL}/api/notifications/${id}`, config)
       setNotifications(notifications.filter(n => n._id !== id))
     } catch (error) {
       console.log(error)

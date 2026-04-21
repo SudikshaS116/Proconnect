@@ -1,3 +1,4 @@
+import BASE_URL from '../utils/api'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../redux/slices/authSlice'
 import { useNavigate, Link } from 'react-router-dom'
@@ -53,7 +54,7 @@ function Navbar() {
     setSearching(true)
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/users/search?query=${searchQuery}`,
+        `${BASE_URL}/api/users/search?query=${searchQuery}`,
         config
       )
       setSearchResults(res.data)
@@ -68,7 +69,7 @@ function Navbar() {
   const fetchUnreadCount = async () => {
     try {
       const res = await axios.get(
-        'http://localhost:5000/api/notifications/unread-count',
+        '${BASE_URL}/api/notifications/unread-count',
         config
       )
       setUnreadCount(res.data.count)

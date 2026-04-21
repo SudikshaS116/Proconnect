@@ -1,3 +1,4 @@
+import BASE_URL from '../utils/api'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -23,7 +24,7 @@ function UserProfile() {
 
   const fetchProfile = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/users/${id}`, config)
+      const res = await axios.get(`${BASE_URL}/api/users/${id}`, config)
       setProfile(res.data)
     } catch (error) {
       console.log(error)
@@ -34,7 +35,7 @@ function UserProfile() {
 
   const checkConnectionStatus = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/connections/my-connections', config)
+      const res = await axios.get('${BASE_URL}/api/connections/my-connections', config)
       const isConnected = res.data.connections.some(c => c._id === id)
       const hasRequest = res.data.connectionRequests.some(r => r._id === id)
       if (isConnected) setConnectionStatus('connected')
@@ -47,7 +48,7 @@ function UserProfile() {
   const handleConnect = async () => {
     setActionLoading(true)
     try {
-      await axios.post(`http://localhost:5000/api/connections/send/${id}`, {}, config)
+      await axios.post(`${BASE_URL}/api/connections/send/${id}`, {}, config)
       setConnectionStatus('request_sent')
     } catch (error) {
       console.log(error)
