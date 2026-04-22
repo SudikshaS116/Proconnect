@@ -45,7 +45,7 @@ function Profile() {
     setLoading(true)
     try {
       const res = await axios.put(
-        '${BASE_URL}/api/users/update',
+        'HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/users/update',
         {
           ...formData,
           skills: formData.skills.split(',').map((s) => s.trim()).filter(Boolean),

@@ -19,7 +19,7 @@ function Notifications() {
 
   const fetchNotifications = async () => {
     try {
-      const res = await axios.get('${BASE_URL}/api/notifications', config)
+      const res = await axios.get('HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/notifications', config)
       setNotifications(res.data)
     } catch (error) {
       console.log(error)
@@ -30,7 +30,7 @@ function Notifications() {
 
   const handleMarkAllRead = async () => {
     try {
-      await axios.put('${BASE_URL}/api/notifications/mark-all-read', {}, config)
+      await axios.put('HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/notifications/mark-all-read', {}, config)
       setNotifications(notifications.map(n => ({ ...n, read: true })))
     } catch (error) {
       console.log(error)
@@ -39,7 +39,7 @@ function Notifications() {
 
   const handleMarkRead = async (id) => {
     try {
-      await axios.put(`${BASE_URL}/api/notifications/${id}/read`, {}, config)
+      await axios.put(`HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/notifications/${id}/read`, {}, config)
       setNotifications(notifications.map(n => n._id === id ? { ...n, read: true } : n))
     } catch (error) {
       console.log(error)
@@ -48,7 +48,7 @@ function Notifications() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${BASE_URL}/api/notifications/${id}`, config)
+      await axios.delete(`HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/notifications/${id}`, config)
       setNotifications(notifications.filter(n => n._id !== id))
     } catch (error) {
       console.log(error)

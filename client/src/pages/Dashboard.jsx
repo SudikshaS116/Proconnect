@@ -15,7 +15,7 @@ function PeopleSidebar({ token, currentUser }) {
   useEffect(() => {
     const fetchPeople = async () => {
       try {
-        const res = await axios.get('${BASE_URL}/api/connections/users', {
+        const res = await axios.get('HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/connections/users', {
           headers: { Authorization: `Bearer ${token}` }
         })
         setPeople(res.data.slice(0, 3))
@@ -26,7 +26,7 @@ function PeopleSidebar({ token, currentUser }) {
 
     const fetchMyConnections = async () => {
       try {
-        const res = await axios.get('${BASE_URL}/api/connections/my-connections', {
+        const res = await axios.get('HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/connections/my-connections', {
           headers: { Authorization: `Bearer ${token}` }
         })
         const ids = res.data.connections.map(c => c._id)
@@ -44,7 +44,7 @@ function PeopleSidebar({ token, currentUser }) {
   const handleConnect = async (userId) => {
     try {
       await axios.post(
-        `${BASE_URL}/api/connections/send/${userId}`,
+        `HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/connections/send/${userId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       )
@@ -120,7 +120,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchMe = async () => {
       try {
-        const res = await axios.get('${BASE_URL}/api/users/me', config)
+        const res = await axios.get('HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/users/me', config)
         dispatch(loginSuccess({ user: res.data, token }))
       } catch (error) {
         console.log(error)
@@ -135,7 +135,7 @@ function Dashboard() {
 
   const fetchPosts = async () => {
     try {
-      const res = await axios.get('${BASE_URL}/api/posts', config)
+      const res = await axios.get('HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/posts', config)
       setPosts(res.data)
     } catch (error) {
       console.log(error)
@@ -178,7 +178,7 @@ function Dashboard() {
         }
       }
       const res = await axios.post(
-        '${BASE_URL}/api/posts',
+        'HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/posts',
         { content: newPost, image: imageUrl },
         config
       )
@@ -196,7 +196,7 @@ function Dashboard() {
   const handleLike = async (postId) => {
     try {
       const res = await axios.put(
-        `${BASE_URL}/api/posts/${postId}/like`,
+        `HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/posts/${postId}/like`,
         {},
         config
       )
@@ -210,7 +210,7 @@ function Dashboard() {
     if (!commentText[postId]?.trim()) return
     try {
       const res = await axios.post(
-        `${BASE_URL}/api/posts/${postId}/comment`,
+        `HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/posts/${postId}/comment`,
         { text: commentText[postId] },
         config
       )
@@ -234,7 +234,7 @@ function Dashboard() {
 
   const handleDelete = async (postId) => {
     try {
-      await axios.delete(`${BASE_URL}/api/posts/${postId}`, config)
+      await axios.delete(`HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/posts/${postId}`, config)
       setPosts(posts.filter(p => p._id !== postId))
     } catch (error) {
       console.log(error)

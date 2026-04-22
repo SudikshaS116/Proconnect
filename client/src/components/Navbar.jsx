@@ -54,7 +54,7 @@ function Navbar() {
     setSearching(true)
     try {
       const res = await axios.get(
-        `${BASE_URL}/api/users/search?query=${searchQuery}`,
+        `HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/users/search?query=${searchQuery}`,
         config
       )
       setSearchResults(res.data)
@@ -69,7 +69,7 @@ function Navbar() {
   const fetchUnreadCount = async () => {
     try {
       const res = await axios.get(
-        '${BASE_URL}/api/notifications/unread-count',
+        'HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/notifications/unread-count',
         config
       )
       setUnreadCount(res.data.count)
