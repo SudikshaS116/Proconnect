@@ -21,7 +21,7 @@ const httpServer = createServer(app)
 // ✅ Allow both localhost and Vercel URL
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://proconnect.vercel.app',
+  'https://proconnect-gold.vercel.app',
   process.env.FRONTEND_URL
 ].filter(Boolean)
 
@@ -33,7 +33,13 @@ const io = new Server(httpServer, {
 })
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true)
+    } else {
+      callback(new Error("CORS not allowed"))
+    }
+  },
   credentials: true
 }))
 app.use(express.json())

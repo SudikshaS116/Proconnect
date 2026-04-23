@@ -5,7 +5,10 @@ import axios from 'axios'
 import { io } from 'socket.io-client'
 import Navbar from '../components/Navbar'
 
-const socket = io('https://proconnect-07nx.onrender.com')
+const socket = io('https://proconnect-07nx.onrender.com', {
+  transports: ['websocket', 'polling'],
+  withCredentials: true
+})
 
 function Messaging() {
   const { user, token } = useSelector((state) => state.auth)
