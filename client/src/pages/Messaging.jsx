@@ -5,7 +5,7 @@ import axios from 'axios'
 import { io } from 'socket.io-client'
 import Navbar from '../components/Navbar'
 
-const socket = io('HTTPS://PROCONNECT-07NX.ONRENDER.COM')
+const socket = io('https://proconnect-07nx.onrender.com')
 
 function Messaging() {
   const { user, token } = useSelector((state) => state.auth)

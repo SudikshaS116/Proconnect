@@ -51,7 +51,7 @@ function Stories() {
 
   const fetchStories = async () => {
     try {
-      const res = await axios.get('HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/stories', config)
+      const res = await axios.get('https://proconnect-07nx.onrender.com/api/stories', config)
       setStories(res.data)
     } catch (error) {
       console.log(error)

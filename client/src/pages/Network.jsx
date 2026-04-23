@@ -21,7 +21,7 @@ function Network() {
 
   const fetchAllUsers = async () => {
     try {
-      const res = await axios.get('HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/connections/users', config)
+      const res = await axios.get('https://proconnect-07nx.onrender.com/api/connections/users', config)
       setAllUsers(res.data)
     } catch (error) {
       console.log(error)

@@ -15,7 +15,7 @@ function PeopleSidebar({ token, currentUser }) {
   useEffect(() => {
     const fetchPeople = async () => {
       try {
-        const res = await axios.get('HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/connections/users', {
+        const res = await axios.get('https://proconnect-07nx.onrender.com/api/connections/users', {
           headers: { Authorization: `Bearer ${token}` }
         })
         setPeople(res.data.slice(0, 3))

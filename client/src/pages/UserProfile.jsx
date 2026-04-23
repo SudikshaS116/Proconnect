@@ -24,7 +24,7 @@ function UserProfile() {
 
   const fetchProfile = async () => {
     try {
-      const res = await axios.get(`HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/users/${id}`, config)
+      const res = await axios.get(`https://proconnect-07nx.onrender.com/api/users/${id}`, config)
       setProfile(res.data)
     } catch (error) {
       console.log(error)

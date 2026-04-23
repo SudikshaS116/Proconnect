@@ -27,7 +27,7 @@ function Signup() {
     }
     setLoading(true)
     try {
-      const res = await axios.post('HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/auth/signup', {
+      const res = await axios.post('https://proconnect-07nx.onrender.com/api/auth/signup', {
         name: formData.name,
         email: formData.email,
         password: formData.password,

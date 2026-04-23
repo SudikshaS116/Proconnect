@@ -54,7 +54,7 @@ function Navbar() {
     setSearching(true)
     try {
       const res = await axios.get(
-        `HTTPS://PROCONNECT-07NX.ONRENDER.COM/api/users/search?query=${searchQuery}`,
+        `https://proconnect-07nx.onrender.com/api/users/search?query=${searchQuery}`,
         config
       )
       setSearchResults(res.data)
