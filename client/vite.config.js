@@ -9,6 +9,4 @@ export default defineConfig({
     babel({ presets: [reactCompilerPreset()] })
   ],
 })
-export default {
-  base: "/",
-}
+
