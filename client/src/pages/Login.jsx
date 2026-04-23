@@ -1,9 +1,9 @@
-import BASE_URL from '../utils/api'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { loginSuccess } from '../redux/slices/authSlice'
 import axios from 'axios'
+import API from '../utils/api'
 
 function Login() {
   const [formData, setFormData] = useState({ email: '', password: '' })
@@ -21,7 +21,7 @@ function Login() {
     setError('')
     setLoading(true)
     try {
-      const res = await axios.post('https://proconnect-07nx.onrender.com/api/auth/login', formData)
+      const res = await axios.post(`${API}/api/auth/login`, formData)
       dispatch(loginSuccess({ user: res.data.user, token: res.data.token }))
       navigate('/dashboard')
     } catch (err) {
@@ -34,8 +34,6 @@ function Login() {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8">
-
-        {/* Logo */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-blue-600">ProConnect</h1>
           <p className="text-gray-500 mt-2">Welcome back</p>
