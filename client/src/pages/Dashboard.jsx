@@ -254,11 +254,11 @@ function Dashboard() {
       <input type="file" accept="image/*" ref={photoRef} onChange={handleImageSelect} className="hidden" />
       <input type="file" accept="video/*" ref={videoRef} onChange={handleImageSelect} className="hidden" />
 
-      <div className="max-w-6xl mx-auto px-4 pt-20 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="max-w-6xl mx-auto px-2 sm:px-4 pt-20 pb-20 sm:pb-8">
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
 
           {/* Left Sidebar */}
-          <div className="md:col-span-1">
+          <div className="hidden md:block md:col-span-1">
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
               <div className="h-16 bg-gradient-to-r from-blue-400 to-blue-600"/>
               <div className="flex flex-col items-center -mt-8 pb-4 px-4">
@@ -285,7 +285,7 @@ function Dashboard() {
           </div>
 
           {/* Middle Feed */}
-          <div className="md:col-span-2 space-y-4">
+          <div className="col-span-1 md:col-span-2 space-y-4">
             <Stories />
 
             {/* Create Post */}
@@ -439,7 +439,7 @@ function Dashboard() {
           </div>
 
           {/* Right Sidebar */}
-          <div className="md:col-span-1 space-y-4">
+          <div className="hidden md:block md:col-span-1 space-y-4">
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-4">
               <h3 className="font-semibold text-gray-800 dark:text-white mb-3">People you may know</h3>
               <PeopleSidebar token={token} currentUser={user} />

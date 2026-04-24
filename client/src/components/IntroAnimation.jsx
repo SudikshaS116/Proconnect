@@ -66,8 +66,8 @@ function IntroAnimation({ onComplete }) {
       <div className="relative flex flex-col items-center">
 
         {/* Meeting Table + Members SVG */}
-        <div className="relative" style={{ width: '700px', height: '450px' }}>
-          <svg width="700" height="450" className="absolute inset-0">
+        <div className="relative w-full" style={{ maxWidth: '700px', height: '350px' }}>
+  <svg width="100%" height="350" viewBox="0 0 700 450" className="absolute inset-0">
 
             {/* Connection strings — phase 3 */}
             {phase >= 3 && connections.map(([a, b], i) => {
